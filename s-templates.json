@@ -1,0 +1,32 @@
+{
+  "responseTemplate": {
+    ".*\"responseCode\":400.*": {
+      "statusCode": "400",
+      "responseTemplates": {
+        "application/json;charset=UTF-8": "$util.parseJson($input.json('$.errorMessage'))"
+      }
+    },
+    ".*\"responseCode\":404.*": {
+      "statusCode": "404",
+      "responseTemplates": {
+        "application/json;charset=UTF-8": "$util.parseJson($input.json('$.errorMessage'))"
+      }
+    },
+    ".*\"responseCode\":500.*": {
+      "statusCode": "500",
+      "responseTemplates": {
+        "application/json;charset=UTF-8": "$util.parseJson($input.json('$.errorMessage'))"
+      }
+    },
+    "default": {
+      "statusCode": "200",
+      "responseParameters": {},
+      "responseModels": {
+        "application/json;charset=UTF-8": "Empty"
+      },
+      "responseTemplates": {
+        "application/json;charset=UTF-8": "$input.json('$')"
+      }
+    }
+  }
+}

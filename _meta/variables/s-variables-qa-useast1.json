@@ -1,0 +1,8 @@
+{
+  "region": "us-east-1",
+  "resourcesStackName": "cauldron-qa-r",
+  "iamRoleArnLambda": "arn:aws:iam::179517958036:role/cauldron-qa-r-IamRoleLambda-19CQ259MP19HY",
+  "securityGroup1": "sg-b68438cd",
+  "subnet1": "subnet-55f18a7f",
+  "subnet2": "subnet-3e260c48"
+}

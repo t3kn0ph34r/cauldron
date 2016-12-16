@@ -1,0 +1,8 @@
+{
+  "database": {
+    "tunnel": {
+      "enabled": true
+    }
+  },
+  "logEvent": false
+}

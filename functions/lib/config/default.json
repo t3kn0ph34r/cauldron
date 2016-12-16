@@ -1,0 +1,563 @@
+{
+  "apiGateway": {
+    "protocol": "https",
+    "host": "56ybdk2ouh.execute-api.us-east-1.amazonaws.com"
+  },
+  "database": {
+    "tunnel": {
+      "enabled": false
+    },
+    "connections": {
+      "perInvocation": true
+    }
+  },
+  "errors": {
+    "generic": {
+      "invalidMethod": {
+        "responseCode": 500,
+        "errorMessage": "Invalid method type"
+      },
+      "pagination": {
+        "pageNotFound":{
+          "responseCode": 404,
+          "errorMessage":  "Page not found"
+        },
+        "nonNumericLimit": {
+          "responseCode": 400,
+          "errorMessage": "Limit parameter must be numeric"
+        },
+        "nonNumericOffset": {
+          "responseCode": 400,
+          "errorMessage": "Offset parameter must be numeric"
+        },
+        "negativeLimit": {
+          "responseCode": 400,
+          "errorMessage": "Limit parameter must not be negative"
+        },
+        "negativeOffset": {
+          "responseCode": 400,
+          "errorMessage": "Offset parameter must not be negative"
+        },
+        "badFilter": {
+          "responseCode": 400,
+          "errorMessage": "Invalid filter: %FIELDNAME%"
+        },
+        "badSort": {
+          "responseCode": 400,
+          "errorMessage": "Invalid sort: %FIELDNAME%"
+        }
+      },
+      "badField": {
+        "responseCode": 400,
+        "errorMessage": "Invalid field: %FIELDNAME%"
+      },
+      "noFields": {
+        "responseCode": 400,
+        "errorMessage": "No valid fields provided"
+      }
+    },
+    "organization": {
+      "missingParentOrgID": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: ParentOrganizationID"
+      },
+      "missingOrgID": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: OrganizationID"
+      },
+      "duplicateOrgID": {
+        "responseCode": 400,
+        "errorMessage": "There already exists an organization with the same OrganizationID"
+      },
+      "missingOrgName": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: OrganizationName"
+      },
+      "missingOrgType": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: OrganizationType"
+      },
+      "missingExternalID": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: ExternalID"
+      },
+      "invalidParentOrgID": {
+        "responseCode": 400,
+        "errorMessage": "Invalid ParentOrganizationID"
+      },
+      "tooLongOrgID": {
+        "responseCode": 400,
+        "errorMessage": "OrganizationID exceeds maximum length of 36 characters"
+      },
+      "tooLongOrgName": {
+        "responseCode": 400,
+        "errorMessage": "OrganizationName exceeds maximum length of 80 characters"
+      },
+      "tooLongExternalID": {
+        "responseCode": 400,
+        "errorMessage": "ExternalID exceeds maximum length of 30 characters"
+      },
+      "tooLongParentOrgID": {
+        "responseCode": 400,
+        "errorMessage": "ParentOrganizationID exceeds maximum length of 36 characters"
+      },
+      "tooLongOrgType": {
+        "responseCode": 400,
+        "errorMessage": "OrganizationType exceeds maximum length of 35 characters"
+      },
+      "invalidOrgID": {
+        "responseCode": 404,
+        "errorMessage": "Invalid OrganizationID"
+      },
+      "selfParentOrgID": {
+        "responseCode": 400,
+        "errorMessage": "Organization must not be a parent of itself"
+      },
+      "rootChangeParent": {
+        "responseCode": 400,
+        "errorMessage": "Root-level organization cannot change its parent org"
+      },
+      "nonBooleanActive": {
+        "responseCode": 400,
+        "errorMessage": "Active must be a boolean value"
+      },
+      "changeOrgID": {
+        "responseCode": 400,
+        "errorMessage": "Cannot update OrganizationID"
+      }
+    },
+    "student": {
+      "studentNotFound": {
+        "responseCode": 404,
+        "errorMessage": "Student not found"
+      },
+      "missingUserID": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: UserID"
+      },
+      "invalidUserID": {
+        "responseCode": 404,
+        "errorMessage": "Invalid UserID"
+      },
+      "duplicateUserID": {
+        "responseCode": 400,
+        "errorMessage": "There already exists a student with the same UserID"
+      },
+      "invalidOrgAssociation": {
+        "responseCode": 404,
+        "errorMessage": "Association between student and organization does not exist"
+      },
+      "duplicateOrgAssociation": {
+        "responseCode": 400,
+        "errorMessage": "Association between student and organization already exists"
+      },
+      "missingStuGrade": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: StuGrade"
+      },
+      "missingFirstName": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: FirstName"
+      },
+      "missingLastName": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: LastName"
+      },
+      "missingAccom01": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom01"
+      },
+      "missingAccom02": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom02"
+      },
+      "missingAccom03": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom03"
+      },
+      "missingAccom04": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom04"
+      },
+      "missingAccom05": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom05"
+      },
+      "missingAccom06": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom06"
+      },
+      "missingAccom07": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom07"
+      },
+      "missingAccom08": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom08"
+      },
+      "missingAccom09": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom09"
+      },
+      "missingAccom10": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom10"
+      },
+      "missingAccom11": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom11"
+      },
+      "missingAccom12": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom12"
+      },
+      "missingAccom13": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom13"
+      },
+      "missingAccom14": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom14"
+      },
+      "missingAccom15": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom15"
+      },
+      "missingAccom16": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom16"
+      },
+      "missingAccom17": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom17"
+      },
+      "missingAccom18": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom18"
+      },
+      "missingAccom19": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom19"
+      },
+      "missingAccom20": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom20"
+      },
+      "missingAccom21": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom21"
+      },
+      "missingAccom22": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom22"
+      },
+      "missingAccom23": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom23"
+      },
+      "missingAccom24": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom24"
+      },
+      "missingAccom25": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom25"
+      },
+      "missingAccom26": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom26"
+      },
+      "missingAccom27": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom27"
+      },
+      "missingAccom28": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom28"
+      },
+      "missingAccom29": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom29"
+      },
+      "missingAccom30": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Accom30"
+      },
+      "missingBirthdate": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: Birthdate"
+      },
+      "missingExternalID": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: ExternalID"
+      },
+      "missingTestDeliveryAccessCode": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: TestDeliveryAccessCode"
+      },
+      "tooLongUserID": {
+        "responseCode": 400,
+        "errorMessage": "UserID exceeds maximum length of 36 characters"
+      },
+      "tooLongStuGrade": {
+        "responseCode": 400,
+        "errorMessage": "StuGrade exceeds maximum length of 2 characters"
+      },
+      "tooLongFirstName": {
+        "responseCode": 400,
+        "errorMessage": "FirstName exceeds maximum length of 35 characters"
+      },
+      "tooLongMiddleName": {
+        "responseCode": 400,
+        "errorMessage": "MiddleName exceeds maximum length of 35 characters"
+      },
+      "tooLongLastName": {
+        "responseCode": 400,
+        "errorMessage": "LastName exceeds maximum length of 35 characters"
+      },
+      "nonBooleanAccom01": {
+        "responseCode": 400,
+        "errorMessage": "Accom01 is not a boolean"
+      },
+      "nonBooleanAccom02": {
+        "responseCode": 400,
+        "errorMessage": "Accom02 is not a boolean"
+      },
+      "nonBooleanAccom03": {
+        "responseCode": 400,
+        "errorMessage": "Accom03 is not a boolean"
+      },
+      "nonBooleanAccom04": {
+        "responseCode": 400,
+        "errorMessage": "Accom04 is not a boolean"
+      },
+      "nonBooleanAccom05": {
+        "responseCode": 400,
+        "errorMessage": "Accom05 is not a boolean"
+      },
+      "nonBooleanAccom06": {
+        "responseCode": 400,
+        "errorMessage": "Accom06 is not a boolean"
+      },
+      "nonBooleanAccom07": {
+        "responseCode": 400,
+        "errorMessage": "Accom07 is not a boolean"
+      },
+      "nonBooleanAccom08": {
+        "responseCode": 400,
+        "errorMessage": "Accom08 is not a boolean"
+      },
+      "nonBooleanAccom09": {
+        "responseCode": 400,
+        "errorMessage": "Accom09 is not a boolean"
+      },
+      "nonBooleanAccom10": {
+        "responseCode": 400,
+        "errorMessage": "Accom10 is not a boolean"
+      },
+      "nonBooleanAccom11": {
+        "responseCode": 400,
+        "errorMessage": "Accom11 is not a boolean"
+      },
+      "nonBooleanAccom12": {
+        "responseCode": 400,
+        "errorMessage": "Accom12 is not a boolean"
+      },
+      "nonBooleanAccom13": {
+        "responseCode": 400,
+        "errorMessage": "Accom13 is not a boolean"
+      },
+      "nonBooleanAccom14": {
+        "responseCode": 400,
+        "errorMessage": "Accom14 is not a boolean"
+      },
+      "nonBooleanAccom15": {
+        "responseCode": 400,
+        "errorMessage": "Accom15 is not a boolean"
+      },
+      "nonBooleanAccom16": {
+        "responseCode": 400,
+        "errorMessage": "Accom16 is not a boolean"
+      },
+      "nonBooleanAccom17": {
+        "responseCode": 400,
+        "errorMessage": "Accom17 is not a boolean"
+      },
+      "nonBooleanAccom18": {
+        "responseCode": 400,
+        "errorMessage": "Accom18 is not a boolean"
+      },
+      "nonBooleanAccom19": {
+        "responseCode": 400,
+        "errorMessage": "Accom19 is not a boolean"
+      },
+      "nonBooleanAccom20": {
+        "responseCode": 400,
+        "errorMessage": "Accom20 is not a boolean"
+      },
+      "nonBooleanAccom21": {
+        "responseCode": 400,
+        "errorMessage": "Accom21 is not a boolean"
+      },
+      "nonBooleanAccom22": {
+        "responseCode": 400,
+        "errorMessage": "Accom22 is not a boolean"
+      },
+      "nonBooleanAccom23": {
+        "responseCode": 400,
+        "errorMessage": "Accom23 is not a boolean"
+      },
+      "nonBooleanAccom24": {
+        "responseCode": 400,
+        "errorMessage": "Accom24 is not a boolean"
+      },
+      "nonBooleanAccom25": {
+        "responseCode": 400,
+        "errorMessage": "Accom25 is not a boolean"
+      },
+      "nonBooleanAccom26": {
+        "responseCode": 400,
+        "errorMessage": "Accom26 is not a boolean"
+      },
+      "nonBooleanAccom27": {
+        "responseCode": 400,
+        "errorMessage": "Accom27 is not a boolean"
+      },
+      "nonBooleanAccom28": {
+        "responseCode": 400,
+        "errorMessage": "Accom28 is not a boolean"
+      },
+      "nonBooleanAccom29": {
+        "responseCode": 400,
+        "errorMessage": "Accom29 is not a boolean"
+      },
+      "nonBooleanAccom30": {
+        "responseCode": 400,
+        "errorMessage": "Accom30 is not a boolean"
+      },
+      "tooLongBirthdate": {
+        "responseCode": 400,
+        "errorMessage": "Birthdate exceeds maximum length of 10 characters"
+      },
+      "tooLongExternalID": {
+        "responseCode": 400,
+        "errorMessage": "ExternalID exceeds maximum length of 30 characters"
+      },
+      "tooLongTestDeliveryAccessCode": {
+        "responseCode": 400,
+        "errorMessage": "TestDeliveryAccessCode exceeds maximum length of 20 characters"
+      },
+      "changeUserID": {
+        "responseCode": 400,
+        "errorMessage": "Cannot update UserID"
+      }
+    },
+    "testAdmin": {
+      "missingAdminName": {
+        "responseCode": 400,
+        "errorMessage": "Missing required field: AdministrationName"
+      },
+      "missingStartDate": {
+        "responseCode": 400,
+        "errorMessage": "Missing required field: AdministrationStartDate"
+      },
+      "missingEndDate": {
+        "responseCode": 400,
+        "errorMessage": "Missing required field: AdministrationEndDate"
+      },
+      "missingSecured": {
+        "responseCode": 400,
+        "errorMessage": "Missing required field: Secured"
+      },
+      "tooLongAdminName": {
+        "responseCode": 400,
+        "errorMessage": "AdministrationName exceeds maximum length of 50 characters"
+      },
+      "invalidTestAdminID": {
+        "responseCode": 404,
+        "errorMessage": "Invalid TestAdministrationID"
+      },
+      "invalidStartDate": {
+        "responseCode": 400,
+        "errorMessage": "AdministrationStartDate does not match required datatype"
+      },
+      "invalidEndDate": {
+        "responseCode": 400,
+        "errorMessage": "AdministrationEndDate does not match required datatype"
+      },
+      "invalidSecured": {
+        "responseCode": 400,
+        "errorMessage": "Secured does not match required datatype"
+      },
+      "invalidActive": {
+        "responseCode": 400,
+        "errorMessage": "Active does not match required datatype"
+      },
+      "missingTestAdminID": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: TestAdministrationID"
+      },
+      "duplicateOrgAssociation": {
+        "responseCode": 400,
+        "errorMessage": "Association between test administration and organization already exists"
+      },
+      "invalidOrgAssociation": {
+        "responseCode": 404,
+        "errorMessage": "Association between test administration and organization does not exist"
+      },
+      "duplicateAssessmentAssociation": {
+        "responseCode": 400,
+        "errorMessage": "Association between test administration and assessment already exists"
+      },
+      "invalidAssessmentAssociation": {
+        "responseCode": 404,
+        "errorMessage": "Association between test administration and assessment does not exist"
+      },
+      "changeTestAdminID": {
+        "responseCode": 400,
+        "errorMessage": "Cannot update TestAdministrationID"
+      }
+    },
+    "assessment": {
+      "invalidAssessmentID": {
+        "responseCode": 404,
+        "errorMessage": "Invalid AssessmentID"
+      },
+      "missingAssessmentID": {
+        "responseCode": 400,
+        "errorMessage": "Missing required value: AssessmentID"
+      }
+    }
+  },
+  "messages": {
+    "student": {
+      "addedToOrg": {
+        "responseCode": 200,
+        "message": "Student added to organization"
+      },
+      "removedFromOrg": {
+        "responseCode": 200,
+        "message": "Student was removed from organization"
+      }
+    },
+    "testAdmin": {
+      "addedToOrg": {
+        "responseCode": 200,
+        "message": "Test administration added to organization"
+      },
+      "removedFromOrg": {
+        "responseCode": 200,
+        "message": "Test administration was removed from organization"
+      },
+      "addedToAssessment": {
+        "responseCode": 200,
+        "message": "Test administration added to assessment"
+      },
+      "removedFromAssessment": {
+        "responseCode": 200,
+        "message": "Test administration was removed from assessment"
+      }
+    }
+  },
+  "logEvent": true
+}

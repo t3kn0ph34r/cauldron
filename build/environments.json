@@ -1,0 +1,19 @@
+{
+  "environments": [
+    {
+      "name": "devlocal"
+    },
+    {
+      "name": "devint"
+    },
+    {
+      "name": "qa"
+    },
+    {
+      "name": "uat"
+    },
+    {
+      "name": "prod"
+    }
+  ]
+}

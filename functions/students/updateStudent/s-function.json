@@ -1,0 +1,60 @@
+{
+  "name": "updateStudent",
+  "runtime": "nodejs4.3",
+  "description": "Update a Student",
+  "customName": false,
+  "customRole": false,
+  "handler": "students/updateStudent/handler.handler",
+  "timeout": 6,
+  "memorySize": 1024,
+  "authorizer": {},
+  "custom": {
+    "excludePatterns": [
+      "lib\\/config\\/.*?local.*",
+      "lib\\\\config\\\\.*?local.*"
+    ]
+  },
+  "endpoints": [
+    {
+      "path": "test/students/{studentId}",
+      "method": "PUT",
+      "type": "AWS",
+      "authorizationType": "none",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": {},
+      "requestTemplates": {
+        "application/json": "${apiGatewayTestRequestPassthrough}"
+      },
+      "responses":"$${responseTemplate}"
+    },
+    {
+      "path": "students/{studentId}",
+      "method": "PUT",
+      "type": "AWS",
+      "authorizationType": "none",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": {},
+      "requestTemplates": {
+        "application/json": "${apiGatewayRequestPassthrough}"
+      },
+      "responses": "$${responseTemplate}"
+    }
+  ],
+  "events": [],
+  "environment": {
+    "SERVERLESS_PROJECT": "${project}",
+    "SERVERLESS_STAGE": "${stage}",
+    "SERVERLESS_REGION": "${region}"
+  },
+  "vpc": {
+    "securityGroupIds": [
+      "${securityGroup1}"
+    ],
+    "subnetIds": [
+      "${subnet1}",
+      "${subnet2}"
+    ]
+  }
+}

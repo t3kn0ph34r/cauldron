@@ -1,0 +1,9 @@
+{
+  "region": "us-east-1",
+  "resourcesStackName": "cauldron-devint-r",
+  "iamRoleArnLambda": "arn:aws:iam::179517958036:role/cauldron-devint-r-IamRoleLambda-X6CYBP2KUOXJ",
+  "apiGatewayApi": "cauldron",
+  "securityGroup1": "sg-e15e879a",
+  "subnet1": "subnet-9a0f2eec",
+  "subnet2": "subnet-864036ac"
+}

@@ -1,0 +1,103 @@
+{
+  "name": "createOrganization",
+  "runtime": "nodejs4.3",
+  "description": "Create an Organization",
+  "customName": false,
+  "customRole": false,
+  "handler": "organizations/createOrganization/handler.handler",
+  "timeout": 6,
+  "memorySize": 1024,
+  "authorizer": {},
+  "custom": {
+    "excludePatterns": [
+      "lib\\/config\\/.*?local.*",
+      "lib\\\\config\\\\.*?local.*"
+    ]
+  },
+  "endpoints": [
+    {
+      "path": "test/organizations",
+      "method": "POST",
+      "type": "AWS",
+      "authorizationType": "AWS_IAM",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": {},
+      "requestTemplates": {
+        "application/json": "${apiGatewayTestRequestPassthrough}"
+      },
+      "responses": "$${responseTemplate}"
+    },
+    {
+      "path": "test/auth/organizations",
+      "method": "POST",
+      "type": "AWS",
+      "authorizationType": "AWS_IAM",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": {},
+      "requestTemplates": {
+        "application/json": "${apiGatewayTestRequestPassthrough}"
+      },
+      "responses": "$${responseTemplate}"
+    },
+    {
+      "path": "auth/organizations",
+      "method": "POST",
+      "type": "AWS",
+      "authorizationType": "AWS_IAM",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": {},
+      "requestTemplates": {
+        "application/json": "${apiGatewayRequestPassthrough}"
+      },
+      "responses": {
+        ".*\"responseCode\":400.*": {
+          "statusCode": "400",
+          "responseTemplates": {
+            "application/json;charset=UTF-8": "$util.parseJson($input.json('$.errorMessage'))"
+          }
+        },
+        "default": {
+          "statusCode": "200",
+          "responseParameters": {},
+          "responseModels": {
+            "application/json;charset=UTF-8": "Empty"
+          },
+          "responseTemplates": {
+            "application/json;charset=UTF-8": "$input.json('$')"
+          }
+        }
+      }
+    },
+    {
+      "path": "organizations",
+      "method": "POST",
+      "type": "AWS",
+      "authorizationType": "AWS_IAM",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": {},
+      "requestTemplates": {
+        "application/json": "${apiGatewayRequestPassthrough}"
+      },
+      "responses": "$${responseTemplate}"
+    }
+  ],
+  "events": [],
+  "environment": {
+    "SERVERLESS_PROJECT": "${project}",
+    "SERVERLESS_STAGE": "${stage}",
+    "SERVERLESS_REGION": "${region}"
+  },
+  "vpc": {
+    "securityGroupIds": [
+      "${securityGroup1}"
+    ],
+    "subnetIds": [
+      "${subnet1}",
+      "${subnet2}"
+    ]
+  }
+}

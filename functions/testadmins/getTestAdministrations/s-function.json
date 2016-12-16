@@ -1,0 +1,66 @@
+{
+  "name": "getTestAdministrations",
+  "runtime": "nodejs4.3",
+  "description": "Get Test Administrations",
+  "customName": false,
+  "customRole": false,
+  "handler": "testadmins/getTestAdministrations/handler.handler",
+  "timeout": 6,
+  "memorySize": 1024,
+  "authorizer": {},
+  "custom": {
+    "excludePatterns": [
+      "lib\\/config\\/.*?local.*",
+      "lib\\\\config\\\\.*?local.*"
+    ]
+  },
+  "endpoints": [
+    {
+      "path": "test/testadmins",
+      "method": "GET",
+      "type": "AWS",
+      "authorizationType": "none",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": {
+        "integration.request.querystring.limit": "method.request.querystring.limit",
+        "integration.request.querystring.offset": "method.request.querystring.offset"
+      },
+      "requestTemplates": {
+        "application/json": "${apiGatewayTestRequestPassthrough}"
+      },
+      "responses": "$${responseTemplate}"
+    },
+    {
+      "path": "testadmins",
+      "method": "GET",
+      "type": "AWS",
+      "authorizationType": "none",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": {
+        "integration.request.querystring.limit": "method.request.querystring.limit",
+        "integration.request.querystring.offset": "method.request.querystring.offset"
+      },
+      "requestTemplates": {
+        "application/json": "${apiGatewayRequestPassthrough}"
+      },
+      "responses": "$${responseTemplate}"
+    }
+  ],
+  "events": [],
+  "environment": {
+    "SERVERLESS_PROJECT": "${project}",
+    "SERVERLESS_STAGE": "${stage}",
+    "SERVERLESS_REGION": "${region}"
+  },
+  "vpc": {
+    "securityGroupIds": [
+      "${securityGroup1}"
+    ],
+    "subnetIds": [
+      "${subnet1}",
+      "${subnet2}"
+    ]
+  }
+}
